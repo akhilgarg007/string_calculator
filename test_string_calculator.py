@@ -27,6 +27,10 @@ class TestStringCalculator(unittest.TestCase):
             add("1,-2,-3")
         self.assertEqual(str(context.exception), "negatives not allowed: -2, -3")
 
+    def test_ignore_numbers_greater_than_1000(self):
+        self.assertEqual(add("1000,1001,2"), 1002)
+
+
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestStringCalculator)
     runner = unittest.TextTestRunner()

@@ -21,7 +21,8 @@ def add(numbers: str) -> int:
         num = int(part)
         if num < 0:
             negatives.append(num)
-        total += num
+        elif num <= 1000:
+            total += num
 
     if negatives:
         raise Exception(f"negatives not allowed: {', '.join(map(str, negatives))}")
