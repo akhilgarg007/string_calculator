@@ -14,4 +14,16 @@ def add(numbers: str) -> int:
 
     pattern = "|".join(delimiters)
     parts = re.split(pattern, numbers)
-    return sum(map(int, parts))
+
+    negatives = []
+    total = 0
+    for part in parts:
+        num = int(part)
+        if num < 0:
+            negatives.append(num)
+        total += num
+
+    if negatives:
+        raise Exception(f"negatives not allowed: {', '.join(map(str, negatives))}")
+
+    return total
