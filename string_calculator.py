@@ -9,8 +9,12 @@ def add(numbers: str) -> int:
 
     if numbers.startswith("//"):
         header, numbers = numbers.split('\n', 1)
-        custom_delim = header[2:]
-        delimiters.append(re.escape(custom_delim))
+
+        if header.startswith("//["):
+            matches = re.findall(r"\[(.*?)\]", header)
+            delimiters.extend(map(re.escape, matches))
+        else:
+            delimiters.append(re.escape(header[2:]))
 
     pattern = "|".join(delimiters)
     parts = re.split(pattern, numbers)

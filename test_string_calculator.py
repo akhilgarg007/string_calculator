@@ -30,6 +30,9 @@ class TestStringCalculator(unittest.TestCase):
     def test_ignore_numbers_greater_than_1000(self):
         self.assertEqual(add("1000,1001,2"), 1002)
 
+    def test_multi_char_delimiter(self):
+        self.assertEqual(add("//[***]\n1***2***3"), 6)
+
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestStringCalculator)
